@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>user</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+    <link rel="stylesheet" th:href="@{/css/jquery-ui-1.10.4.custom.css}" >
+    <script th:src="@{/js/jquery-1.10.2.js}"></script>
+	<script th:src="@{/js/jquery-ui-1.10.4.custom.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+    
+    
+</head>
+<body class="container">
+
+<nav class="navbar navbar-pills navbar-fixed-top" role="navigation"> 
+    <div class="container-fluid"> 
+    <div class="navbar-header"> 
+        <a class="navbar-brand">Rostering System</a> 
+    </div> 
+    <div> 
+        <ul class="nav navbar-nav"> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Holiday Application<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/application/toAdd(name=${name})}">apply</a></li>  
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Work Limit<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/doctorLimit/toAdd(name=${name})}">set</a></li> 
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Work Shift<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/schedule/list(name=${name})}">view</a></li> 
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Messages<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/message/doctorsIn(name=${name})}">contact</a></li> 
+                </ul>
+            </li> 
+            <li><a href="" th:href="@{/}">Sign out</a></li> 
+        </ul> 
+    </div> 
+   
+    <div class="navbar-header">
+       <p class="navbar-text">User :</p>
+       <p class="navbar-text" th:text="${name}"></p>
+    </div>
+    
+    </div> 
+</nav>
+
+<br/>
+<div class="with:80%">
+   
+   
+    <div>
+      <h2>message receive</h2>
+      <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>fromName</th>
+            <th>toName</th>
+            <th>content</th>
+            <th>status</th>
+            <th>agree</th>
+            <th>reject</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  th:each="tomessage : ${messagetodoctor}">
+            <th scope="row" th:text="${tomessage.id}">1</th>
+            <td th:text="${tomessage.fromName}">neo</td>
+            <td th:text="${tomessage.toName}">1</td>
+            <td th:text="${tomessage.content}">Otto</td>
+            <td th:text="${tomessage.status}">6</td>
+            <td><a th:href="@{/message/editDoctorMessage(id=${tomessage.id},st='agree')}">agree</a></td>
+            <td><a th:href="@{/message/editDoctorMessage(id=${tomessage.id},st='reject')}">reject</a></td>
+        </tr>
+        </tbody>
+    </table>
+   </div>
+     
+     
+     <div>
+      <h2>message send</h2>
+      <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>fromName</th>
+            <th>toName</th>
+            <th>content</th>
+            <th>status</th>
+            <th>delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  th:each="frommessage : ${messagefromdoctor}">
+            <th scope="row" th:text="${frommessage.id}">1</th>
+            <td th:text="${frommessage.fromName}">neo</td>
+            <td th:text="${frommessage.toName}">1</td>
+            <td th:text="${frommessage.content}">Otto</td>
+            <td th:text="${frommessage.status}">6</td>
+            <td><a th:href="@{/message/deleteDoctorMessage(id=${frommessage.id},name=${frommessage.fromName})}">delete</a></td>
+        </tr>
+        </tbody>
+     </table>
+   </div>
+
+
+
+   <div>
+   <h2>write message</h2>
+    <form class="form-horizontal"   th:action="@{/message/addDoctorMessage(name=${name})}" th:object="${message}" method="post">
+      
+       <div class="form-group">
+           <div class="col-sm-4"></div>
+           <div class="col-sm-2">
+               <label for="doctor" class="col-sm-2 control-label">FromDoctor</label>
+           </div>
+           <div class="col-sm-2">
+               <input name="fromName" id="fromName" placeholder="fromName" th:value="${name}" class="form-control"></input>
+               <p th:if="${#fields.hasErrors('fromName')}" th:errors="*{fromName}">fromName error</p>
+           </div>
+       </div>
+      
+        <div class="form-group">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-2">
+                <label for="ToManager" class="col-sm-2 control-label">ToManager</label>
+            </div>
+            <div class="col-sm-2">
+                <select name="toName" id="toName" class="form-control">
+                    <option th:each="manager : ${managers}" th:text="${manager.name}"></option>
+                </select>
+                <p th:if="${#fields.hasErrors('toName')}" th:errors="*{toName}">toName error</p>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-1">
+                <label for="content" class="col-sm-2 control-label" >content</label>
+            </div>
+            <div class="col-sm-5">
+                <textarea rows="3" cols="30" name="content" id="content" placeholder="content" class="form-control"></textarea>
+                <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}">content error</p>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-6">
+                <div class="col-sm-offset-2 col-sm-2">
+                    <input type="submit" value="Submit" class="btn btn-info" />
+                </div>
+                <div class="col-sm-4"></div>
+                <div class="col-sm-2">
+                    <input type="reset" value="Reset" class="btn btn-info" />
+                </div>
+            </div>
+        </div>
+    </form>   
+ </div>
+    
+    
+    
+    
+</div>
+</body>
+</html>

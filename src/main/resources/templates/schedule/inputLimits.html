@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>user</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+    <link rel="stylesheet" th:href="@{/css/jquery-ui-1.10.4.custom.css}" >
+    <script th:src="@{/js/jquery-1.10.2.js}"></script>
+	<script th:src="@{/js/jquery-ui-1.10.4.custom.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+    
+    <script type="text/javascript" th:inline="JavaScript">
+    
+          var doctornum = [[${doctorNum}]];
+    
+          ///alert(doctornum);
+    
+          function checkmorningDoctorNum(){
+        	  var value = $("#morningDoctorNum").val();
+        	   //alert(value);
+        	  var maxNum = doctornum*2/3; 
+        	   if(value>=maxNum){
+        		   alert("the value is too big, the total num of doctor is "+doctornum);
+        	   }else if(value<=0){
+        		   alert("the value can not be zero or negative");
+        	   }
+          }
+          
+          function checkafternoonDoctorNum(){
+        	  var value = $("#afternoonDoctorNum").val();
+        	   //alert(value);
+        	  var maxNum = doctornum*2/3; 
+        	   if(value>=maxNum){
+        		   alert("the value is too big, the total num of doctor is "+doctornum);
+        	   }else if(value<=0){
+        		   alert("the value can not be zero or negative");
+        	   }
+          }
+          
+          function checkeveningDoctorNum(){
+        	  var value = $("#eveningDoctorNum").val();
+        	   //alert(value);
+        	  var maxNum = doctornum*2/3; 
+        	   if(value>=maxNum){
+        		   alert("the value is too big, the total num of doctor is "+doctornum);
+        	   }else if(value<=0){
+        		   alert("the value can not be zero or negative");
+        	   }
+          }
+          
+          function checkmaxNumberforEveningWork(){
+        	  var value = $("#maxNumberforEveningWork").val();
+        	   //alert(value);
+        	  //var maxNum = doctornum*2/3; 
+        	   if(value>=4){
+        		   alert("the value is too big, the total num of evening work is 5");
+        	   }else if(value<=1){
+        		   alert("the value is too small");
+        	   }
+          }
+          
+          
+    
+    </script>
+    
+</head>
+<body class="container">
+
+<nav class="navbar navbar-pills navbar-fixed-top" role="navigation"> 
+    <div class="container-fluid"> 
+    <div class="navbar-header"> 
+        <a class="navbar-brand">Rostering System</a> 
+    </div> 
+    <div> 
+        <ul class="nav navbar-nav"> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Doctor Information<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/doctor/list(managerName=${managerName})}">update</a></li> 
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Holiday Application<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/application/list(managerName=${managerName})}">check</a></li> 
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Work Limits<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/doctorLimit/list(managerName=${managerName})}">check</a></li> 
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Work Shift<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/schedule/init(managerName=${managerName})}">schedule</a></li>
+                    <li><a href="" th:href="@{/schedule/toEdit(managerName=${managerName})}">edit</a></li>
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Messages<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/message/managersIn(managerName=${managerName})}">contact</a></li> 
+                </ul>
+            </li> 
+            <li><a href="" th:href="@{/}">Sign out</a></li> 
+        </ul> 
+    </div> 
+    
+    <div class="navbar-header">
+       <p class="navbar-text">User :</p>
+       <p class="navbar-text" th:text="${managerName}"></p>
+    </div>
+    
+    </div> 
+</nav>
+
+
+<br/><br/><br/>
+<h2>Add Limits</h2>
+<div class="with:80%">
+    <form class="form-horizontal"   th:action="@{/schedule/addLimit(managerName=${managerName})}"  method="post">
+        
+        <div class="form-group" style="margin-top:30px">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-3">
+               <label for="morningDoctorNum" class="control-label">Doctors' number for morning shift:</label>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="morningDoctorNum"  id="morningDoctorNum" placeholder="morningDoctorNum" onchange="checkmorningDoctorNum()"/>
+            </div>
+        </div>
+        <div class="form-group" style="margin-top:30px">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-3">
+                <label for="afternoonDoctorNum" class="control-label">Doctors' number for afternoon shift:</label>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="afternoonDoctorNum"  id="afternoonDoctorNum" placeholder="afternoonDoctorNum" onchange="checkafternoonDoctorNum()"/>
+            </div>
+        </div>
+        <div class="form-group" style="margin-top:30px">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-3">
+                <label for="eveningDoctorNum" class="control-label">Doctors' number for night shift:</label>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="eveningDoctorNum"  id="eveningDoctorNum" placeholder="eveningDoctorNum" onchange="checkeveningDoctorNum()"/>
+            </div>
+        </div>
+        <div class="form-group" style="margin-top:30px">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-3">
+                <label for="maxNumberforEveningWork" class="control-label">Maximum of night shift per doctor:</label>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="maxNumberforEveningWork"  id="maxNumberforEveningWork" placeholder="maxNumberforEveningWork" onchange="checkmaxNumberforEveningWork()"/>
+            </div>
+        </div>
+        
+        <div class="form-group" style="margin-top:40px">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-2">
+                 <label for="youngDoctorWorkNum" >Young doctor's shift number:</label>
+            </div>
+            <div class="col-sm-1">
+                 <select name="youngDoctorWorkNum" id="youngDoctorWorkNum" class="form-control">
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                </select>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-2">
+                <label for="middleAgeDoctorWorkNum">Middle Age doctor's shift number:</label>
+            </div>
+            <div class="col-sm-1">
+                <select name="middleAgeDoctorWorkNum" id="middleAgeDoctorWorkNum" class="form-control">
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                </select>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-2">
+                <label for="seniorDoctorWorkNum" >Senior doctor's shift number:</label>
+            </div>
+            <div class="col-sm-1">
+                <select name="seniorDoctorWorkNum" id="seniorDoctorWorkNum" class="form-control">
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="form-group" style="margin-top:40px">
+            <div class="col-sm-offset-3 col-sm-6">
+                <div class="col-sm-offset-1 col-sm-1">
+                    <input type="submit" value="Submit" class="btn btn-info" />
+                </div>
+                <div class="col-sm-8"></div>
+                <div class="col-sm-1">
+                    <input type="reset" value="Reset" class="btn btn-info" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

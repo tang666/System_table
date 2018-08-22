@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>userList</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+    <link rel="stylesheet" th:href="@{/css/jquery-ui-1.10.4.custom.css}" >
+    <script th:src="@{/js/jquery-1.10.2.js}"></script>
+	<script th:src="@{/js/jquery-ui-1.10.4.custom.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+    
+    <style>
+        .translatecenter{width: 80%; height: 60%; position: absolute; left:80%; top:70%; transform:translate(-50%,-50%);}
+    </style>
+    
+</head>
+<body class="container">
+
+<nav class="navbar navbar-pills navbar-fixed-top" role="navigation"> 
+    <div class="container-fluid"> 
+    <div class="navbar-header"> 
+        <a class="navbar-brand">Rostering System</a> 
+    </div> 
+    <div> 
+        <ul class="nav navbar-nav"> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Holiday Application<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/application/toAdd(name=${name})}">apply</a></li>  
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Work Limit<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/doctorLimit/toAdd(name=${name})}">set</a></li> 
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Work Shift<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/schedule/list(name=${name})}">view</a></li> 
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Messages<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/message/doctorsIn(name=${name})}">contact</a></li> 
+                </ul>
+            </li> 
+            <li><a href="" th:href="@{/}">Sign out</a></li> 
+        </ul> 
+    </div> 
+   
+    <div class="navbar-header">
+       <p class="navbar-text">User :</p>
+       <p class="navbar-text" th:text="${name}"></p>
+    </div>
+    
+    </div> 
+</nav>
+
+
+<div class="translatecenter">
+
+    <h2>Welcome!</h2>
+
+</div>
+
+
+
+</body>
+</html>

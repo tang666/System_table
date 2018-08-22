@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>user</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+    <link rel="stylesheet" th:href="@{/css/jquery-ui-1.10.4.custom.css}" >
+    <script th:src="@{/js/jquery-1.10.2.js}"></script>
+	<script th:src="@{/js/jquery-ui-1.10.4.custom.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+    
+    <script type="text/javascript" th:inline="JavaScript">
+         var dr_1_1 = new Array();
+         var dr_2_1 = new Array();
+     	 var dr_3_1 = new Array();
+         var dr_4_1 = new Array();
+     	 var dr_5_1 = new Array();
+     	 var dr_6_1 = new Array();
+    	 var dr_7_1 = new Array();
+      	 var dr_1_2 = new Array();
+     	 var dr_2_2 = new Array();
+      	 var dr_3_2 = new Array();
+     	 var dr_4_2 = new Array();
+     	 var dr_5_2 = new Array();
+     	 var dr_6_2 = new Array();
+    	 var dr_7_2 = new Array();
+     	 var dr_1_3 = new Array();
+     	 var dr_2_3 = new Array();
+     	 var dr_3_3 = new Array();
+     	 var dr_4_3 = new Array();
+     	 var dr_5_3 = new Array();
+     	 var dr_6_3 = new Array();
+    	 var dr_7_3 = new Array();
+     	 
+     	 var doctorscores = [[${doctorScores}]];
+         //alert(doctorscores.length);
+     	 
+         var mondaymorningd = [[${mondaymorningdrs}]];
+         var tuesdaymorningd = [[${tuesdaymorningdrs}]];
+         var wednesdaymorningd = [[${wednesdaymorningdrs}]];
+         var thursdaymorningd = [[${thursdaymorningdrs}]];
+         var fridaymorningd = [[${fridaymorningdrs}]];
+         var saturdaymorningd = [[${saturdaymorningdrs}]];
+         var sundaymorningd = [[${sundaymorningdrs}]];
+         
+         var mondayafternoond = [[${mondayafternoondrs}]];
+         var tuesdayafternoond = [[${tuesdayafternoondrs}]];
+         var wednesdayafternoond = [[${wednesdayafternoondrs}]];
+         var thursdayafternoond = [[${thursdayafternoondrs}]];
+         var fridayafternoond = [[${fridayafternoondrs}]];
+         var saturdayafternoond = [[${saturdayafternoondrs}]];
+         var sundayafternoond = [[${sundayafternoondrs}]];
+         
+         var mondayeveningd = [[${mondayeveningdrs}]];
+         var tuesdayeveningd = [[${tuesdayeveningdrs}]];
+         var wednesdayeveningd = [[${wednesdayeveningdrs}]];
+         var thursdayeveningd = [[${thursdayeveningdrs}]];
+         var fridayeveningd = [[${fridayeveningdrs}]];
+         var saturdayeveningd = [[${saturdayeveningdrs}]];
+         var sundayeveningd = [[${sundayeveningdrs}]];
+     	 
+         function getVal(){
+        	 $(".mondaymorning").each(function(){
+        		 dr_1_1.push($(this).val());
+        	 })
+        	 $(".tuesdaymorning").each(function(){
+        		 dr_2_1.push($(this).val());
+        	 })
+        	 $(".wednesdaymorning").each(function(){
+        		 dr_3_1.push($(this).val());
+        	 })
+        	 $(".thursdaymorning").each(function(){
+        		 dr_4_1.push($(this).val());
+        	 })
+        	 $(".fridaymorning").each(function(){
+        		 dr_5_1.push($(this).val());
+        	 })
+        	 $(".saturdaymorning").each(function(){
+        		 dr_6_1.push($(this).val());
+        	 })
+        	 $(".sundaymorning").each(function(){
+        		 dr_7_1.push($(this).val());
+        	 })
+        	 
+        	 $(".mondayafternoon").each(function(){
+        		 dr_1_2.push($(this).val());
+        	 })
+        	 $(".tuesdayafternoon").each(function(){
+        		 dr_2_2.push($(this).val());
+        	 })
+        	 $(".wednesdayafternoon").each(function(){
+        		 dr_3_2.push($(this).val());
+        	 })
+        	 $(".thursdayafternoon").each(function(){
+        		 dr_4_2.push($(this).val());
+        	 })
+        	 $(".fridayafternoon").each(function(){
+        		 dr_5_2.push($(this).val());
+        	 })
+        	 $(".saturdayafternoon").each(function(){
+        		 dr_6_2.push($(this).val());
+        	 })
+        	 $(".sundayafternoon").each(function(){
+        		 dr_7_2.push($(this).val());
+        	 })
+        	 
+        	 
+        	 $(".mondayevening").each(function(){
+        		 dr_1_3.push($(this).val());
+        	 })
+        	 $(".tuesdayevening").each(function(){
+        		 dr_2_3.push($(this).val());
+        	 })
+        	 $(".wednesdayevening").each(function(){
+        		 dr_3_3.push($(this).val());
+        	 })
+        	 $(".thursdayevening").each(function(){
+        		 dr_4_3.push($(this).val());
+        	 })
+        	 $(".fridayevening").each(function(){
+        		 dr_5_3.push($(this).val());
+        	 })
+        	 $(".saturdayevening").each(function(){
+        		 dr_6_3.push($(this).val());
+        	 })
+        	 $(".sundayevening").each(function(){
+        		 dr_7_3.push($(this).val());
+        	 })
+        	 
+        	 alert("edit successful!");
+        	 ///////////////////////////////////////////
+        	 $.ajax({
+     			url:[[@{/schedule/ajaxTest.action}]],
+     			type: 'post',
+         		dataType:'json',
+         		contentType:'application/json',
+         		data:JSON.stringify([{day : "Monday",time : "Morning",doctors : dr_1_1},{day : "Monday",time : "Afternoon",doctors : dr_1_2},{day : "Monday",time : "Evening",doctors : dr_1_3},
+         		                     {day : "Tuesday",time : "Morning",doctors : dr_2_1},{day : "Tuesday",time : "Afternoon",doctors : dr_2_2},{day : "Tuesday",time : "Evening",doctors : dr_2_3},
+         		                     {day : "Wednesday",time : "Morning",doctors : dr_3_1},{day : "Wednesday",time : "Afternoon",doctors : dr_3_2},{day : "Wednesday",time : "Evening",doctors : dr_3_3},
+         		                     {day : "Thursday",time : "Morning",doctors : dr_4_1},{day : "Thursday",time : "Afternoon",doctors : dr_4_2},{day : "Thursday",time : "Evening",doctors : dr_4_3},
+         		                     {day : "Friday",time : "Morning",doctors : dr_5_1},{day : "Friday",time : "Afternoon",doctors : dr_5_2},{day : "Friday",time : "Evening",doctors : dr_5_3},
+         		                     {day : "Saturday",time : "Morning",doctors : dr_6_1},{day : "Saturday",time : "Afternoon",doctors : dr_6_2},{day : "Saturday",time : "Evening",doctors : dr_6_3},
+         		                     {day : "Sunday",time : "Morning",doctors : dr_7_1},{day : "Sunday",time : "Afternoon",doctors : dr_7_2},{day : "Sunday",time : "Evening",doctors : dr_7_3}]),
+     		    async:true,
+     		    success:function(data){
+         			if(data!=null){
+         				alert('flag : ' + data.flag + " , hintMessage : " + data.hintMessage);
+         			}
+         		}
+     		});
+        	 
+         }
+    
+        //check mondaymorning
+         function checkmondaymorning(){
+        	 //get value;
+        	 var changevalue;
+        	 var newmondaymorning = new Array();
+        	 $(".mondaymorning").each(function(){
+           		 newmondaymorning.push($(this).val());
+           	     })   
+           	 if(mondaymorningd.length!=newmondaymorning.length){
+           		 alert("error input");
+           	 }else{
+           		 for(var i=0;i<mondaymorningd.length;i++){
+           			 if(mondaymorningd[i]!=newmondaymorning[i]){
+           				 changevalue = newmondaymorning[i];
+           				 break;
+           			 }
+           		 }
+           	 }
+        	 alert(changevalue);
+        	 //check value repeat
+        	 for(var i=0;i<mondaymorningd.length;i++){
+        		 if(changevalue==mondaymorningd[i]){
+        			 alert("the doctor is repeat");
+        			 break;
+        		 } 
+        	 }
+        	 //check value exist
+        	 for(var i=0;i<doctorscores.length;i++){
+        		 if(changevalue==doctorscores[i].doctorName){
+        			 break;
+        		 }
+        		 if(i==doctorscores.length-1){
+        			 alert("the doctor is not exist");
+        		 }
+        	 }
+         }
+         
+         //check tuesdaymorning
+         function checktuesdaymorning(){
+        	 //get value;
+        	 var changevalue;
+        	 var newtuesdaymorning = new Array();
+        	 $(".tuesdaymorning").each(function(){
+           		 newtuesdaymorning.push($(this).val());
+           	     })   
+           	 if(tuesdaymorningd.length!=newtuesdaymorning.length){
+           		 alert("error input");
+           	 }else{
+           		 for(var i=0;i<tuesdaymorningd.length;i++){
+           			 if(tuesdaymorningd[i]!=newtuesdaymorning[i]){
+           				 changevalue = newtuesdaymorning[i];
+           				 break;
+           			 }
+           		 }
+           	 }
+        	 alert(changevalue);
+        	 //check value repeat
+        	 for(var i=0;i<tuesdaymorningd.length;i++){
+        		 if(changevalue==tuesdaymorningd[i]){
+        			 alert("the doctor is repeat");
+        			 break;
+        		 } 
+        	 }
+        	 //check value exist
+        	 for(var i=0;i<doctorscores.length;i++){
+        		 if(changevalue==doctorscores[i].doctorName){
+        			 break;
+        		 }
+        		 if(i==doctorscores.length-1){
+        			 alert("the doctor is not exist");
+        		 }
+        	 }
+         }
+         
+       //check wednesdaymorning
+         function checkwednesdaymorning(){
+        	 //get value;
+        	 var changevalue;
+        	 var newwednesdaymorning = new Array();
+        	 $(".wednesdaymorning").each(function(){
+           		 newwednesdaymorning.push($(this).val());
+           	     })   
+           	 if(wednesdaymorningd.length!=newwednesdaymorning.length){
+           		 alert("error input");
+           	 }else{
+           		 for(var i=0;i<wednesdaymorningd.length;i++){
+           			 if(wednesdaymorningd[i]!=newwednesdaymorning[i]){
+           				 changevalue = newwednesdaymorning[i];
+           				 break;
+           			 }
+           		 }
+           	 }
+        	 alert(changevalue);
+        	 //check value repeat
+        	 for(var i=0;i<wednesdaymorningd.length;i++){
+        		 if(changevalue==wednesdaymorningd[i]){
+        			 alert("the doctor is repeat");
+        			 break;
+        		 } 
+        	 }
+        	 //check value exist
+        	 for(var i=0;i<doctorscores.length;i++){
+        		 if(changevalue==doctorscores[i].doctorName){
+        			 break;
+        		 }
+        		 if(i==doctorscores.length-1){
+        			 alert("the doctor is not exist");
+        		 }
+        	 }
+         }
+         
+       //check thursdaymorning
+         function checkthursdaymorning(){
+        	 //get value;
+        	 var changevalue;
+        	 var newthursdaymorning = new Array();
+        	 $(".thursdaymorning").each(function(){
+           		 newthursdaymorning.push($(this).val());
+           	     })   
+           	 if(thursdaymorningd.length!=newthursdaymorning.length){
+           		 alert("error input");
+           	 }else{
+           		 for(var i=0;i<thursdaymorningd.length;i++){
+           			 if(thursdaymorningd[i]!=newthursdaymorning[i]){
+           				 changevalue = newthursdaymorning[i];
+           				 break;
+           			 }
+           		 }
+           	 }
+        	 alert(changevalue);
+        	 //check value repeat
+        	 for(var i=0;i<thursdaymorningd.length;i++){
+        		 if(changevalue==thursdaymorningd[i]){
+        			 alert("the doctor is repeat");
+        			 break;
+        		 } 
+        	 }
+        	 //check value exist
+        	 for(var i=0;i<doctorscores.length;i++){
+        		 if(changevalue==doctorscores[i].doctorName){
+        			 break;
+        		 }
+        		 if(i==doctorscores.length-1){
+        			 alert("the doctor is not exist");
+        		 }
+        	 }
+         }
+       
+       //check fridaymorning
+         function checkfridaymorning(){
+        	 //get value;
+        	 var changevalue;
+        	 var newfridaymorning = new Array();
+        	 $(".fridaymorning").each(function(){
+           		 newfridaymorning.push($(this).val());
+           	     })   
+           	 if(fridaymorningd.length!=newfridaymorning.length){
+           		 alert("error input");
+           	 }else{
+           		 for(var i=0;i<fridaymorningd.length;i++){
+           			 if(fridaymorningd[i]!=newfridaymorning[i]){
+           				 changevalue = newfridaymorning[i];
+           				 break;
+           			 }
+           		 }
+           	 }
+        	 alert(changevalue);
+        	 //check value repeat
+        	 for(var i=0;i<fridaymorningd.length;i++){
+        		 if(changevalue==fridaymorningd[i]){
+        			 alert("the doctor is repeat");
+        			 break;
+        		 } 
+        	 }
+        	 //check value exist
+        	 for(var i=0;i<doctorscores.length;i++){
+        		 if(changevalue==doctorscores[i].doctorName){
+        			 break;
+        		 }
+        		 if(i==doctorscores.length-1){
+        			 alert("the doctor is not exist");
+        		 }
+        	 }
+         }
+       
+       //check saturdaymorning
+         function checksaturdaymorning(){
+        	 //get value;
+        	 var changevalue;
+        	 var newsaturdaymorning = new Array();
+        	 $(".saturdaymorning").each(function(){
+           		 newsaturdaymorning.push($(this).val());
+           	     })   
+           	 if(saturdaymorningd.length!=newsaturdaymorning.length){
+           		 alert("error input");
+           	 }else{
+           		 for(var i=0;i<saturdaymorningd.length;i++){
+           			 if(saturdaymorningd[i]!=newsaturdaymorning[i]){
+           				 changevalue = newsaturdaymorning[i];
+           				 break;
+           			 }
+           		 }
+           	 }
+        	 alert(changevalue);
+        	 //check value repeat
+        	 for(var i=0;i<saturdaymorningd.length;i++){
+        		 if(changevalue==saturdaymorningd[i]){
+        			 alert("the doctor is repeat");
+        			 break;
+        		 } 
+        	 }
+        	 //check value exist
+        	 for(var i=0;i<doctorscores.length;i++){
+        		 if(changevalue==doctorscores[i].doctorName){
+        			 break;
+        		 }
+        		 if(i==doctorscores.length-1){
+        			 alert("the doctor is not exist");
+        		 }
+        	 }
+         }
+       //check sundaymorning
+         function checksundaymorning(){
+        	 //get value;
+        	 var changevalue;
+        	 var newsundaymorning = new Array();
+        	 $(".sundaymorning").each(function(){
+           		 newsundaymorning.push($(this).val());
+           	     })   
+           	 if(sundaymorningd.length!=newsundaymorning.length){
+           		 alert("error input");
+           	 }else{
+           		 for(var i=0;i<sundaymorningd.length;i++){
+           			 if(sundaymorningd[i]!=newsundaymorning[i]){
+           				 changevalue = newsundaymorning[i];
+           				 break;
+           			 }
+           		 }
+           	 }
+        	 alert(changevalue);
+        	 //check value repeat
+        	 for(var i=0;i<sundaymorningd.length;i++){
+        		 if(changevalue==sundaymorningd[i]){
+        			 alert("the doctor is repeat");
+        			 break;
+        		 } 
+        	 }
+        	 //check value exist
+        	 for(var i=0;i<doctorscores.length;i++){
+        		 if(changevalue==doctorscores[i].doctorName){
+        			 break;
+        		 }
+        		 if(i==doctorscores.length-1){
+        			 alert("the doctor is not exist");
+        		 }
+        	 }
+         }
+       ///////////////////////////////////////////////////////
+       //check mondayafternoon
+         function checkmondayafternoon(){
+        	 //get value;
+        	 var changevalue;
+        	 var newmondayafternoon = new Array();
+        	 $(".mondayafternoon").each(function(){
+           		 newmondayafternoon.push($(this).val());
+           	     })   
+           	 if(mondayafternoond.length!=newmondayafternoon.length){
+           		 alert("error input");
+           	 }else{
+           		 for(var i=0;i<mondayafternoond.length;i++){
+           			 if(mondayafternoond[i]!=newmondayafternoon[i]){
+           				 changevalue = newmondayafternoon[i];
+           				 break;
+           			 }
+           		 }
+           	 }
+        	 alert(changevalue);
+        	 //check value repeat
+        	 for(var i=0;i<mondayafternoond.length;i++){
+        		 if(changevalue==mondayafternoond[i]){
+        			 alert("the doctor is repeat");
+        			 break;
+        		 } 
+        	 }
+        	 //check value exist
+        	 for(var i=0;i<doctorscores.length;i++){
+        		 if(changevalue==doctorscores[i].doctorName){
+        			 break;
+        		 }
+        		 if(i==doctorscores.length-1){
+        			 alert("the doctor is not exist");
+        		 }
+        	 }
+         }
+         
+         //check tuesdayafternoon
+         function checktuesdayafternoon(){
+        	 //get value;
+        	 var changevalue;
+        	 var newtuesdayafternoon = new Array();
+        	 $(".tuesdayafternoon").each(function(){
+           		 newtuesdayafternoon.push($(this).val());
+           	     })   
+           	 if(tuesdayafternoond.length!=newtuesdayafternoon.length){
+           		 alert("error input");
+           	 }else{
+           		 for(var i=0;i<tuesdayafternoond.length;i++){
+           			 if(tuesdayafternoond[i]!=newtuesdayafternoon[i]){
+           				 changevalue = newtuesdayafternoon[i];
+           				 break;
+           			 }
+           		 }
+           	 }
+        	 alert(changevalue);
+        	 //check value repeat
+        	 for(var i=0;i<tuesdayafternoond.length;i++){
+        		 if(changevalue==tuesdayafternoond[i]){
+        			 alert("the doctor is repeat");
+        			 break;
+        		 } 
+        	 }
+        	 //check value exist
+        	 for(var i=0;i<doctorscores.length;i++){
+        		 if(changevalue==doctorscores[i].doctorName){
+        			 break;
+        		 }
+        		 if(i==doctorscores.length-1){
+        			 alert("the doctor is not exist");
+        		 }
+        	 }
+         }
+         
+       //check wednesdayafternoon
+         function checkwednesdayafternoon(){
+        	 //get value;
+        	 var changevalue;
+        	 var newwednesdayafternoon = new Array();
+        	 $(".wednesdayafternoon").each(function(){
+           		 newwednesdayafternoon.push($(this).val());
+           	     })   
+           	 if(wednesdayafternoond.length!=newwednesdayafternoon.length){
+           		 alert("error input");
+           	 }else{
+           		 for(var i=0;i<wednesdayafternoond.length;i++){
+           			 if(wednesdayafternoond[i]!=newwednesdayafternoon[i]){
+           				 changevalue = newwednesdayafternoon[i];
+           				 break;
+           			 }
+           		 }
+           	 }
+        	 alert(changevalue);
+        	 //check value repeat
+        	 for(var i=0;i<wednesdayafternoond.length;i++){
+        		 if(changevalue==wednesdayafternoond[i]){
+        			 alert("the doctor is repeat");
+        			 break;
+        		 } 
+        	 }
+        	 //check value exist
+        	 for(var i=0;i<doctorscores.length;i++){
+        		 if(changevalue==doctorscores[i].doctorName){
+        			 break;
+        		 }
+        		 if(i==doctorscores.length-1){
+        			 alert("the doctor is not exist");
+        		 }
+        	 }
+         }
+         
+       //check thursdayafternoon
+         function checkthursdayafternoon(){
+        	 //get value;
+        	 var changevalue;
+        	 var newthursdayafternoon = new Array();
+        	 $(".thursdayafternoon").each(function(){
+           		 newthursdayafternoon.push($(this).val());
+           	     })   
+           	 if(thursdayafternoond.length!=newthursdayafternoon.length){
+           		 alert("error input");
+           	 }else{
+           		 for(var i=0;i<thursdayafternoond.length;i++){
+           			 if(thursdayafternoond[i]!=newthursdayafternoon[i]){
+           				 changevalue = newthursdayafternoon[i];
+           				 break;
+           			 }
+           		 }
+           	 }
+        	 alert(changevalue);
+        	 //check value repeat
+        	 for(var i=0;i<thursdayafternoond.length;i++){
+        		 if(changevalue==thursdayafternoond[i]){
+        			 alert("the doctor is repeat");
+        			 break;
+        		 } 
+        	 }
+        	 //check value exist
+        	 for(var i=0;i<doctorscores.length;i++){
+        		 if(changevalue==doctorscores[i].doctorName){
+        			 break;
+        		 }
+        		 if(i==doctorscores.length-1){
+        			 alert("the doctor is not exist");
+        		 }
+        	 }
+         }
+       
+       //check fridayafternoon
+         function checkfridayafternoon(){
+        	 //get value;
+        	 var changevalue;
+        	 var newfridayafternoon = new Array();
+        	 $(".fridayafternoon").each(function(){
+           		 newfridayafternoon.push($(this).val());
+           	     })   
+           	 if(fridayafternoond.length!=newfridayafternoon.length){
+           		 alert("error input");
+           	 }else{
+           		 for(var i=0;i<fridayafternoond.length;i++){
+           			 if(fridayafternoond[i]!=newfridayafternoon[i]){
+           				 changevalue = newfridayafternoon[i];
+           				 break;
+           			 }
+           		 }
+           	 }
+        	 alert(changevalue);
+        	 //check value repeat
+        	 for(var i=0;i<fridayafternoond.length;i++){
+        		 if(changevalue==fridayafternoond[i]){
+        			 alert("the doctor is repeat");
+        			 break;
+        		 } 
+        	 }
+        	 //check value exist
+        	 for(var i=0;i<doctorscores.length;i++){
+        		 if(changevalue==doctorscores[i].doctorName){
+        			 break;
+        		 }
+        		 if(i==doctorscores.length-1){
+        			 alert("the doctor is not exist");
+        		 }
+        	 }
+         }
+       //check saturdayafternoon
+         function checksaturdayafternoon(){
+        	 //get value;
+        	 var changevalue;
+        	 var newsaturdayafternoon = new Array();
+        	 $(".saturdayafternoon").each(function(){
+           		 newsaturdayafternoon.push($(this).val());
+           	     })   
+           	 if(saturdayafternoond.length!=newsaturdayafternoon.length){
+           		 alert("error input");
+           	 }else{
+           		 for(var i=0;i<saturdayafternoond.length;i++){
+           			 if(saturdayafternoond[i]!=newsaturdayafternoon[i]){
+           				 changevalue = newsaturdayafternoon[i];
+           				 break;
+           			 }
+           		 }
+           	 }
+        	 alert(changevalue);
+        	 //check value repeat
+        	 for(var i=0;i<saturdayafternoond.length;i++){
+        		 if(changevalue==saturdayafternoond[i]){
+        			 alert("the doctor is repeat");
+        			 break;
+        		 } 
+        	 }
+        	 //check value exist
+        	 for(var i=0;i<doctorscores.length;i++){
+        		 if(changevalue==doctorscores[i].doctorName){
+        			 break;
+        		 }
+        		 if(i==doctorscores.length-1){
+        			 alert("the doctor is not exist");
+        		 }
+        	 }
+         }
+       //check sundayafternoon
+         function checksundayafternoon(){
+        	 //get value;
+        	 var changevalue;
+        	 var newsundayafternoon = new Array();
+        	 $(".sundayafternoon").each(function(){
+           		 newsundayafternoon.push($(this).val());
+           	     })   
+           	 if(sundayafternoond.length!=newsundayafternoon.length){
+           		 alert("error input");
+           	 }else{
+           		 for(var i=0;i<sundayafternoond.length;i++){
+           			 if(sundayafternoond[i]!=newsundayafternoon[i]){
+           				 changevalue = newsundayafternoon[i];
+           				 break;
+           			 }
+           		 }
+           	 }
+        	 alert(changevalue);
+        	 //check value repeat
+        	 for(var i=0;i<sundayafternoond.length;i++){
+        		 if(changevalue==sundayafternoond[i]){
+        			 alert("the doctor is repeat");
+        			 break;
+        		 } 
+        	 }
+        	 //check value exist
+        	 for(var i=0;i<doctorscores.length;i++){
+        		 if(changevalue==doctorscores[i].doctorName){
+        			 break;
+        		 }
+        		 if(i==doctorscores.length-1){
+        			 alert("the doctor is not exist");
+        		 }
+        	 }
+         }
+       
+       
+       /////////////////////////////
+       
+       //check mondayevening
+         function checkmondayevening(){
+        	 //get value;
+        	 var changevalue;
+        	 var newmondayevening = new Array();
+        	 $(".mondayevening").each(function(){
+           		 newmondayevening.push($(this).val());
+           	     })   
+           	 if(mondayeveningd.length!=newmondayevening.length){
+           		 alert("error input");
+           	 }else{
+           		 for(var i=0;i<mondayeveningd.length;i++){
+           			 if(mondayeveningd[i]!=newmondayevening[i]){
+           				 changevalue = newmondayevening[i];
+           				 break;
+           			 }
+           		 }
+           	 }
+        	 alert(changevalue);
+        	 //check value repeat
+        	 for(var i=0;i<mondayeveningd.length;i++){
+        		 if(changevalue==mondayeveningd[i]){
+        			 alert("the doctor is repeat");
+        			 break;
+        		 } 
+        	 }
+        	 //check value exist
+        	 for(var i=0;i<doctorscores.length;i++){
+        		 if(changevalue==doctorscores[i].doctorName){
+        			 break;
+        		 }
+        		 if(i==doctorscores.length-1){
+        			 alert("the doctor is not exist");
+        		 }
+        	 }
+         }
+         
+         //check tuesdayevening
+         function checktuesdayevening(){
+        	 //get value;
+        	 var changevalue;
+        	 var newtuesdayevening = new Array();
+        	 $(".tuesdayevening").each(function(){
+           		 newtuesdayevening.push($(this).val());
+           	     })   
+           	 if(tuesdayeveningd.length!=newtuesdayevening.length){
+           		 alert("error input");
+           	 }else{
+           		 for(var i=0;i<tuesdayeveningd.length;i++){
+           			 if(tuesdayeveningd[i]!=newtuesdayevening[i]){
+           				 changevalue = newtuesdayevening[i];
+           				 break;
+           			 }
+           		 }
+           	 }
+        	 alert(changevalue);
+        	 //check value repeat
+        	 for(var i=0;i<tuesdayeveningd.length;i++){
+        		 if(changevalue==tuesdayeveningd[i]){
+        			 alert("the doctor is repeat");
+        			 break;
+        		 } 
+        	 }
+        	 //check value exist
+        	 for(var i=0;i<doctorscores.length;i++){
+        		 if(changevalue==doctorscores[i].doctorName){
+        			 break;
+        		 }
+        		 if(i==doctorscores.length-1){
+        			 alert("the doctor is not exist");
+        		 }
+        	 }
+         }
+         
+       //check wednesdayevening
+         function checkwednesdayevening(){
+        	 //get value;
+        	 var changevalue;
+        	 var newwednesdayevening = new Array();
+        	 $(".wednesdayevening").each(function(){
+           		 newwednesdayevening.push($(this).val());
+           	     })   
+           	 if(wednesdayeveningd.length!=newwednesdayevening.length){
+           		 alert("error input");
+           	 }else{
+           		 for(var i=0;i<wednesdayeveningd.length;i++){
+           			 if(wednesdayeveningd[i]!=newwednesdayevening[i]){
+           				 changevalue = newwednesdayevening[i];
+           				 break;
+           			 }
+           		 }
+           	 }
+        	 alert(changevalue);
+        	 //check value repeat
+        	 for(var i=0;i<wednesdayeveningd.length;i++){
+        		 if(changevalue==wednesdayeveningd[i]){
+        			 alert("the doctor is repeat");
+        			 break;
+        		 } 
+        	 }
+        	 //check value exist
+        	 for(var i=0;i<doctorscores.length;i++){
+        		 if(changevalue==doctorscores[i].doctorName){
+        			 break;
+        		 }
+        		 if(i==doctorscores.length-1){
+        			 alert("the doctor is not exist");
+        		 }
+        	 }
+         }
+         
+       //check thursdayevening
+         function checkthursdayevening(){
+        	 //get value;
+        	 var changevalue;
+        	 var newthursdayevening = new Array();
+        	 $(".thursdayevening").each(function(){
+           		 newthursdayevening.push($(this).val());
+           	     })   
+           	 if(thursdayeveningd.length!=newthursdayevening.length){
+           		 alert("error input");
+           	 }else{
+           		 for(var i=0;i<thursdayeveningd.length;i++){
+           			 if(thursdayeveningd[i]!=newthursdayevening[i]){
+           				 changevalue = newthursdayevening[i];
+           				 break;
+           			 }
+           		 }
+           	 }
+        	 alert(changevalue);
+        	 //check value repeat
+        	 for(var i=0;i<thursdayeveningd.length;i++){
+        		 if(changevalue==thursdayeveningd[i]){
+        			 alert("the doctor is repeat");
+        			 break;
+        		 } 
+        	 }
+        	 //check value exist
+        	 for(var i=0;i<doctorscores.length;i++){
+        		 if(changevalue==doctorscores[i].doctorName){
+        			 break;
+        		 }
+        		 if(i==doctorscores.length-1){
+        			 alert("the doctor is not exist");
+        		 }
+        	 }
+         }
+       
+       //check fridayevening
+         function checkfridayevening(){
+        	 //get value;
+        	 var changevalue;
+        	 var newfridayevening = new Array();
+        	 $(".fridayevening").each(function(){
+           		 newfridayevening.push($(this).val());
+           	     })   
+           	 if(fridayeveningd.length!=newfridayevening.length){
+           		 alert("error input");
+           	 }else{
+           		 for(var i=0;i<fridayeveningd.length;i++){
+           			 if(fridayeveningd[i]!=newfridayevening[i]){
+           				 changevalue = newfridayevening[i];
+           				 break;
+           			 }
+           		 }
+           	 }
+        	 alert(changevalue);
+        	 //check value repeat
+        	 for(var i=0;i<fridayeveningd.length;i++){
+        		 if(changevalue==fridayeveningd[i]){
+        			 alert("the doctor is repeat");
+        			 break;
+        		 } 
+        	 }
+        	 //check value exist
+        	 for(var i=0;i<doctorscores.length;i++){
+        		 if(changevalue==doctorscores[i].doctorName){
+        			 break;
+        		 }
+        		 if(i==doctorscores.length-1){
+        			 alert("the doctor is not exist");
+        		 }
+        	 }
+         }
+         
+         //check saturdayevening
+         function checksaturdayevening(){
+        	 //get value;
+        	 var changevalue;
+        	 var newsaturdayevening = new Array();
+        	 $(".saturdayevening").each(function(){
+           		 newsaturdayevening.push($(this).val());
+           	     })   
+           	 if(saturdayeveningd.length!=newsaturdayevening.length){
+           		 alert("error input");
+           	 }else{
+           		 for(var i=0;i<saturdayeveningd.length;i++){
+           			 if(saturdayeveningd[i]!=newsaturdayevening[i]){
+           				 changevalue = newsaturdayevening[i];
+           				 break;
+           			 }
+           		 }
+           	 }
+        	 alert(changevalue);
+        	 //check value repeat
+        	 for(var i=0;i<saturdayeveningd.length;i++){
+        		 if(changevalue==saturdayeveningd[i]){
+        			 alert("the doctor is repeat");
+        			 break;
+        		 } 
+        	 }
+        	 //check value exist
+        	 for(var i=0;i<doctorscores.length;i++){
+        		 if(changevalue==doctorscores[i].doctorName){
+        			 break;
+        		 }
+        		 if(i==doctorscores.length-1){
+        			 alert("the doctor is not exist");
+        		 }
+        	 }
+         }  
+       
+       //check sundayevening
+         function checksundayevening(){
+        	 //get value;
+        	 var changevalue;
+        	 var newsundayevening = new Array();
+        	 $(".sundayevening").each(function(){
+           		 newsundayevening.push($(this).val());
+           	     })   
+           	 if(sundayeveningd.length!=newsundayevening.length){
+           		 alert("error input");
+           	 }else{
+           		 for(var i=0;i<sundayeveningd.length;i++){
+           			 if(sundayeveningd[i]!=newsundayevening[i]){
+           				 changevalue = newsundayevening[i];
+           				 break;
+           			 }
+           		 }
+           	 }
+        	 alert(changevalue);
+        	 //check value repeat
+        	 for(var i=0;i<sundayeveningd.length;i++){
+        		 if(changevalue==sundayeveningd[i]){
+        			 alert("the doctor is repeat");
+        			 break;
+        		 } 
+        	 }
+        	 //check value exist
+        	 for(var i=0;i<doctorscores.length;i++){
+        		 if(changevalue==doctorscores[i].doctorName){
+        			 break;
+        		 }
+        		 if(i==doctorscores.length-1){
+        			 alert("the doctor is not exist");
+        		 }
+        	 }
+         }  
+         
+    
+    </script>
+    
+    
+    
+</head>
+<body class="container">
+
+<nav class="navbar navbar-pills navbar-fixed-top" role="navigation"> 
+    <div class="container-fluid"> 
+    <div class="navbar-header"> 
+        <a class="navbar-brand">Rostering System</a> 
+    </div> 
+    <div> 
+        <ul class="nav navbar-nav"> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Doctor Information<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/doctor/list(managerName=${managerName})}">update</a></li> 
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Holiday Application<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/application/list(managerName=${managerName})}">check</a></li> 
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Work Limits<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/doctorLimit/list(managerName=${managerName})}">check</a></li> 
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Work Shift<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/schedule/init(managerName=${managerName})}">schedule</a></li>
+                    <li><a href="" th:href="@{/schedule/toEdit(managerName=${managerName})}">edit</a></li>
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Messages<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/message/managersIn(managerName=${managerName})}">contact</a></li> 
+                </ul>
+            </li> 
+            <li><a href="" th:href="@{/}">Sign out</a></li> 
+        </ul> 
+    </div> 
+    
+    <div class="navbar-header">
+       <p class="navbar-text">User :</p>
+       <p class="navbar-text" th:text="${managerName}"></p>
+    </div>
+    
+    </div> 
+</nav>
+
+<br/><br/><br/>
+<h2>Edit Work Shift</h2>
+<br/><br/>
+<div class="with:80%">
+   
+        <table class="table table-hover table-bordered">
+            <thead>
+               <tr>
+                  <th>#</th>
+                  <th>Monday</th>
+                  <th>Tuesday</th>
+                  <th>Wednesday</th>
+                  <th>Thursday</th>
+                  <th>Friday</th>
+                  <th>Saturday</th>
+                  <th>Sunday</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <th>Morning</th>
+                  <td><input class="mondaymorning" th:each="dr : ${mondaymorningdrs}" th:value="${dr}" onchange="checkmondaymorning()"></input></td>
+                  <td><input class="tuesdaymorning" th:each="dr : ${tuesdaymorningdrs}" th:value="${dr}" onchange="checktuesdaymorning()"></input></td>
+                  <td><input class="wednesdaymorning" th:each="dr : ${wednesdaymorningdrs}" th:value="${dr}" onchange="checkwednesdaymorning()"></input></td>
+                  <td><input class="thursdaymorning" th:each="dr : ${thursdaymorningdrs}" th:value="${dr}" onchange="checkthursdaymorning()"></input></td>
+                  <td><input class="fridaymorning" th:each="dr : ${fridaymorningdrs}" th:value="${dr}" onchange="checkfridaymorning()"></input></td>
+                  <td><input class="saturdaymorning" th:each="dr : ${saturdaymorningdrs}" th:value="${dr}" onchange="checksaturdaymorning()"></input></td>
+                  <td><input class="sundaymorning" th:each="dr : ${sundaymorningdrs}" th:value="${dr}" onchange="checksundaymorning()"></input></td>
+               </tr>
+               <tr>
+                  <th>Afternoon</th>
+                  <td><input class="mondayafternoon" th:each="dr : ${mondayafternoondrs}" th:value="${dr}" onchange="checkmondayafternoon()"></input></td>
+                  <td><input class="tuesdayafternoon" th:each="dr : ${tuesdayafternoondrs}" th:value="${dr}" onchange="checktuesdayafternoon()"></input></td>
+                  <td><input class="wednesdayafternoon" th:each="dr : ${wednesdayafternoondrs}" th:value="${dr}" onchange="checkwednesdayafternoon()"></input></td>
+                  <td><input class="thursdayafternoon" th:each="dr : ${thursdayafternoondrs}" th:value="${dr}" onchange="checkthursdayafternoon()"></input></td>
+                  <td><input class="fridayafternoon" th:each="dr : ${fridayafternoondrs}" th:value="${dr}" onchange="checkfridayafternoon()"></input></td>
+                  <td><input class="saturdayafternoon" th:each="dr : ${saturdayafternoondrs}" th:value="${dr}" onchange="checksaturdayafternoon()"></input></td>
+                  <td><input class="sundayafternoon" th:each="dr : ${sundayafternoondrs}" th:value="${dr}" onchange="checksundayafternoon()"></input></td>
+               </tr>
+               <tr>
+                  <th>Evening</th>
+                  <td><input class="mondayevening" th:each="dr : ${mondayeveningdrs}" th:value="${dr}" onchange="checkmondayevening()"></input></td>
+                  <td><input class="tuesdayevening" th:each="dr : ${tuesdayeveningdrs}" th:value="${dr}" onchange="checktuesdayevening()"></input></td>
+                  <td><input class="wednesdayevening" th:each="dr : ${wednesdayeveningdrs}" th:value="${dr}" onchange="checkwednesdayevening()"></input></td>
+                  <td><input class="thursdayevening" th:each="dr : ${thursdayeveningdrs}" th:value="${dr}" onchange="checkthursdayevening()"></input></td>
+                  <td><input class="fridayevening" th:each="dr : ${fridayeveningdrs}" th:value="${dr}" onchange="checkfridayevening()"></input></td>
+                  <td><input class="saturdayevening" th:each="dr : ${saturdayeveningdrs}" th:value="${dr}" onchange="checksaturdayevening()"></input></td>
+                  <td><input class="sundayevening" th:each="dr : ${sundayeveningdrs}" th:value="${dr}" onchange="checksundayevening()"></input></td>
+               </tr>
+            </tbody>
+        </table>
+        
+        
+      <div class="col-sm-offset-2 col-sm-8">  
+          <div class="col-sm-offset-1 col-sm-2">
+              <button class="btn btn-primary" onClick="getVal()">save</button>
+          </div>
+          <div class="col-sm-5"></div>
+          <div class="col-sm-2">
+              <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Dispaly Doctors' status</button>
+          </div>
+      </div>
+      
+      
+      
+      
+      
+   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Doctors' status</h4>
+			</div>
+			<div class="modal-body">
+				<table class="table table-hover">
+				   <thead>
+				      <tr>
+				         <th>Name</th>
+				         <th>Remaining working time</th>
+				         <th>Remaining overtime</th>
+				         <th>Holiday</th>
+				      </tr>
+				   </thead>
+				   <tbody>
+				      <tr th:each="ds : ${doctorScores}">
+				         <td th:text="${ds.doctorName}"></td>
+				         <td th:text="${ds.ableWorkNumber}"></td>
+                         <td th:text="${ds.ableOverNumber}"></td>
+                         <td th:text="${ds.holiday}"></td>
+				      </tr>
+				   </tbody>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+   </div>
+      
+      
+    
+</div>
+
+</body>
+</html>

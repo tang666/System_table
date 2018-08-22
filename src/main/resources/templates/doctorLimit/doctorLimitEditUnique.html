@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>user</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+    <link rel="stylesheet" th:href="@{/css/jquery-ui-1.10.4.custom.css}" >
+    <script th:src="@{/js/jquery-1.10.2.js}"></script>
+	<script th:src="@{/js/jquery-ui-1.10.4.custom.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body class="container">
+
+<nav class="navbar navbar-pills navbar-fixed-top" role="navigation"> 
+    <div class="container-fluid"> 
+    <div class="navbar-header"> 
+        <a class="navbar-brand">Rostering System</a> 
+    </div> 
+    <div> 
+        <ul class="nav navbar-nav"> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Holiday Application<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/application/toAdd(name=${name})}">apply</a></li>  
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Work Limit<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/doctorLimit/toAdd(name=${name})}">set</a></li> 
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Work Shift<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/schedule/list(name=${name})}">view</a></li> 
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Messages<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/message/doctorsIn(name=${name})}">contact</a></li> 
+                </ul>
+            </li> 
+            <li><a href="" th:href="@{/}">Sign out</a></li> 
+        </ul> 
+    </div> 
+   
+    <div class="navbar-header">
+       <p class="navbar-text">User :</p>
+       <p class="navbar-text" th:text="${name}"></p>
+    </div>
+    
+    </div> 
+</nav>
+
+
+<br/><br/><br/>
+<h2>Edit Work Limits</h2>
+<br/><br/>
+<div class="with:80%">
+    <form class="form-horizontal"   th:action="@{/doctorLimit/editDoctor(name=${name})}" th:object="${doctorLimit}"  method="post">
+        <input type="hidden" name="id" th:value="*{id}" />
+        <div class="form-group" style="margin-top:50px">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-2">
+                <label for="doctorName" class="col-sm-2 control-label">doctorName</label>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" name="doctorName"  id="doctorName" th:value="*{doctorName}" placeholder="doctorName"/>
+                <p th:if="${#fields.hasErrors('doctorName')}" th:errors="*{doctorName}">doctorName error</p>
+            </div>
+        </div>
+        
+        <div class="form-group" style="margin-top:50px">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-2">
+                <label for="numberOvertime" class="col-sm-2 control-label" >numberOvertime</label>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" name="numberOvertime" id="numberOvertime"  th:value="*{numberOvertime}" placeholder="numberOvertime"/>
+                <p th:if="${#fields.hasErrors('numberOvertime')}" th:errors="*{numberOvertime}">numberOvertime error</p>
+            </div>
+        </div>
+        
+         <div class="form-group" style="margin-top:50px">
+            <div class="col-sm-offset-1 col-sm-10">
+              <div class="col-sm-1"></div>
+              <div class="col-sm-2">
+                 <label for="mondayPriority" class="control-label">mondayPriority:</label>
+              </div>
+              <div class="col-sm-2">
+                 <label for="tuesdayPriority" class="control-label">tuesdayPriority:</label>
+              </div>
+              <div class="col-sm-2">
+                 <label for="wednesdayPriority" class="control-label">wednesdayPriority:</label>
+              </div>
+              <div class="col-sm-2">
+                 <label for="thursdayPriority" class="control-label">thursdayPriority:</label>
+              </div>
+              <div class="col-sm-2">
+                 <label for="fridayPriority" class="control-label">fridayPriority:</label>
+              </div>
+            </div>
+            <div class="col-sm-offset-1 col-sm-10" style="margin-top:20px">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <select class="form-control" name="mondayPriority" id="mondayPriority" th:field="*{mondayPriority}" th:value="*{mondayPriority}">
+                        <option th:select="*{mondayPriority==1}" value=1>1</option>
+                        <option th:select="*{mondayPriority==2}" value=2>2</option>
+                        <option th:select="*{mondayPriority==3}" value=3>3</option>
+                        <option th:select="*{mondayPriority==4}" value=4>4</option>
+                        <option th:select="*{mondayPriority==5}" value=5>5</option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <select class="form-control" name="tuesdayPriority" id="tuesdayPriority" th:field="*{tuesdayPriority}" th:value="*{tuesdayPriority}">
+                        <option th:select="*{tuesdayPriority==1}" value=1>1</option>
+                        <option th:select="*{tuesdayPriority==2}" value=2>2</option>
+                        <option th:select="*{tuesdayPriority==3}" value=3>3</option>
+                        <option th:select="*{tuesdayPriority==4}" value=4>4</option>
+                        <option th:select="*{tuesdayPriority==5}" value=5>5</option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <select class="form-control" name="wednesdayPriority" id="wednesdayPriority" th:field="*{wednesdayPriority}" th:value="*{wednesdayPriority}">
+                        <option th:select="*{wednesdayPriority==1}" value=1>1</option>
+                        <option th:select="*{wednesdayPriority==2}" value=2>2</option>
+                        <option th:select="*{wednesdayPriority==3}" value=3>3</option>
+                        <option th:select="*{wednesdayPriority==4}" value=4>4</option>
+                        <option th:select="*{wednesdayPriority==5}" value=5>5</option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <select class="form-control" name="thursdayPriority" id="thursdayPriority" th:field="*{thursdayPriority}" th:value="*{thursdayPriority}">
+                        <option th:select="*{thursdayPriority==1}" value=1>1</option>
+                        <option th:select="*{thursdayPriority==2}" value=2>2</option>
+                        <option th:select="*{thursdayPriority==3}" value=3>3</option>
+                        <option th:select="*{thursdayPriority==4}" value=4>4</option>
+                        <option th:select="*{thursdayPriority==5}" value=5>5</option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <select class="form-control" name="fridayPriority" id="fridayPriority" th:field="*{fridayPriority}" th:value="*{fridayPriority}">
+                        <option th:select="*{fridayPriority==1}" value=1>1</option>
+                        <option th:select="*{fridayPriority==2}" value=2>2</option>
+                        <option th:select="*{fridayPriority==3}" value=3>3</option>
+                        <option th:select="*{fridayPriority==4}" value=4>4</option>
+                        <option th:select="*{fridayPriority==5}" value=5>5</option>
+                    </select>
+                </div>
+            </div>
+        
+        </div>
+        
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-8">
+                <div class="col-sm-offset-2 col-sm-2">
+                    <input type="submit" value="Submit" class="btn btn-info" />
+                </div>
+                <div class="col-sm-4"></div>
+                <div class="col-sm-2">
+                    <input type="reset" value="Reset" class="btn btn-info" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

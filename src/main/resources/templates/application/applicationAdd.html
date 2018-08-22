@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>user</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+    <link rel="stylesheet" th:href="@{/css/jquery-ui-1.10.4.custom.css}" >
+    <script th:src="@{/js/jquery-1.10.2.js}"></script>
+	<script th:src="@{/js/jquery-ui-1.10.4.custom.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body class="container">
+
+<nav class="navbar navbar-pills navbar-fixed-top" role="navigation"> 
+    <div class="container-fluid"> 
+    <div class="navbar-header"> 
+        <a class="navbar-brand">Rostering System</a> 
+    </div> 
+    <div> 
+        <ul class="nav navbar-nav"> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Holiday Application<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/application/toAdd(name=${name})}">apply</a></li>  
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Work Limit<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/doctorLimit/toAdd(name=${name})}">set</a></li> 
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Work Shift<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/schedule/list(name=${name})}">view</a></li> 
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Messages<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/message/doctorsIn(name=${name})}">contact</a></li> 
+                </ul>
+            </li> 
+            <li><a href="" th:href="@{/}">Sign out</a></li> 
+        </ul> 
+    </div> 
+   
+    <div class="navbar-header">
+       <p class="navbar-text">User :</p>
+       <p class="navbar-text" th:text="${name}"></p>
+    </div>
+    
+    </div> 
+</nav>
+
+<br/><br/>
+<div class="with:80%">
+  <h2>Holiday Application List</h2>
+  <br/>
+  <div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>doctorName</th>
+            <th>date</th>
+            <th>reason</th>
+            <th>status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  th:each="app : ${doctorList}">
+            <th scope="row" th:text="${app.id}">1</th>
+            <td th:text="${app.doctorName}">neo</td>
+            <td th:text="${app.date}">Otto</td>
+            <td th:text="${app.reason}">6</td>
+            <td th:text="${app.status}">6</td>
+        </tr>
+        </tbody>
+    </table>
+  </div>
+  <br/>
+   <h2>Add Holiday Application</h2>
+   <br/>
+   <div>
+    <form class="form-horizontal"   th:action="@{/application/add(name=${name})}"  th:object="${application}" method="post">
+        <div class="form-group">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-2">
+                <label for="doctorName" class="col-sm-2 control-label">doctorName:</label>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="doctorName"  id="doctorName" placeholder="doctorName" th:value="${name}"/>
+                <p th:if="${#fields.hasErrors('doctorName')}" th:errors="*{doctorName}">doctorName error</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-2">
+                <label for="date" class="col-sm-2 control-label">date:</label>
+            </div>
+            <div class="col-sm-2">
+                <select name="date" id="date" class="form-control">
+                    <option>Monday</option>
+                    <option>Tuesday</option>
+                    <option>Wednesday</option>
+                    <option>Thursday</option>
+                    <option>Friday</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-1">
+                <label for="reason" class="col-sm-2 control-label" >reason:</label>
+            </div>
+            <div class="col-sm-5">
+                <textarea rows="3" cols="30" name="reason" id="reason" placeholder="reason" class="form-control"></textarea>
+                <p th:if="${#fields.hasErrors('reason')}" th:errors="*{reason}">reason error</p>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-6">
+                <div class="col-sm-offset-2 col-sm-2">
+                    <input type="submit" value="Submit" class="btn btn-info" />
+                </div>
+                <div class="col-sm-4"></div>
+                <div class="col-sm-2">
+                    <input type="reset" value="Reset" class="btn btn-info" />
+                </div>
+            </div>
+        </div>
+    </form>
+    
+   
+  </div>
+</div>
+</body>
+</html>

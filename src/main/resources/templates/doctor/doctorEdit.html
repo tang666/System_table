@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>user</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+    <link rel="stylesheet" th:href="@{/css/jquery-ui-1.10.4.custom.css}" >
+    <script th:src="@{/js/jquery-1.10.2.js}"></script>
+	<script th:src="@{/js/jquery-ui-1.10.4.custom.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body class="container">
+
+<nav class="navbar navbar-pills navbar-fixed-top" role="navigation"> 
+    <div class="container-fluid"> 
+    <div class="navbar-header"> 
+        <a class="navbar-brand">Rostering System</a> 
+    </div> 
+    <div> 
+        <ul class="nav navbar-nav"> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Doctor Information<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/doctor/list(managerName=${managerName})}">update</a></li> 
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Holiday Application<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/application/list(managerName=${managerName})}">check</a></li> 
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Work Limits<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/doctorLimit/list(managerName=${managerName})}">check</a></li> 
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Work Shift<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/schedule/init(managerName=${managerName})}">schedule</a></li>
+                    <li><a href="" th:href="@{/schedule/toEdit(managerName=${managerName})}">edit</a></li>
+                </ul>
+            </li> 
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                Messages<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">  
+                    <li><a href="" th:href="@{/message/managersIn(managerName=${managerName})}">contact</a></li> 
+                </ul>
+            </li> 
+            <li><a href="" th:href="@{/}">Sign out</a></li> 
+        </ul> 
+    </div> 
+    
+    <div class="navbar-header">
+       <p class="navbar-text">User :</p>
+       <p class="navbar-text" th:text="${managerName}"></p>
+    </div>
+    
+    </div> 
+</nav>
+
+
+<br/><br/><br/>
+<h2>Edit Doctor</h2>
+<br/><br/>
+<div class="with:80%">
+    <form class="form-horizontal"   th:action="@{/doctor/edit(managerName=${managerName})}" th:object="${doctor}"  method="post">
+        <input type="hidden" name="id" th:value="*{id}" />
+        <div class="form-group" style="margin-top:50px">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-1">
+                 <label for="name" class="col-sm-2 control-label">name</label>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="name"  id="name" th:value="*{name}" placeholder="name"/>
+                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name error</p>
+            </div>
+        </div>
+        
+        <div class="form-group" style="margin-top:50px">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-1">
+                <label for="password" class="col-sm-2 control-label" >password</label>
+            </div>
+            <div class="col-sm-3">
+                <input type="password" class="form-control" name="password" id="password"  th:value="*{password}" placeholder="password"/>
+                <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password error</p>
+            </div>
+        </div>
+        
+        <div class="form-group" style="margin-top:50px">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-1">
+                <label for="age" class="col-sm-2 control-label">age</label>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="age"  id="age" th:value="*{age}" placeholder="age"/>
+                <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}">age error</p>
+            </div>
+        </div>
+        
+        <div class="form-group" style="margin-top:50px">
+            <div class="col-sm-offset-4 col-sm-4">
+               <div class="col-sm-offset-3 col-sm-1"> 
+                <input type="submit" value="Submit" class="btn btn-info" />
+               </div>
+               <div class="col-sm-4"></div>
+               <div class="col-sm-1"> 
+                <a href="/doctor/toAdd" th:href="@{/doctor/list}" class="btn btn-info">Back</a>
+               </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

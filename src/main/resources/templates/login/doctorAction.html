@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>userList</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+    
+    <style>
+        .translatecenter{width: 80%; height: 60%; position: absolute; left:75%; top:50%; transform:translate(-50%,-50%);}
+    </style>
+    
+</head>
+<body class="container">
+<br/>
+
+
+<div class="translatecenter">
+
+<h1>Doctor action Page</h1>
+<br/><br/>
+
+<label for="doctor" class="col-sm-2 control-label">apply for holiday:</label>
+<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a th:href="@{/application/toAdd(name=${currentDoctor})}" class="btn btn-info">apply</a>
+    </div>
+</div>
+<br/><br/>
+
+<label for="doctor" class="col-sm-2 control-label">set work limit:</label>
+<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a th:href="@{/doctorLimit/toAdd(name=${currentDoctor})}" class="btn btn-info">set</a>
+    </div>
+</div>
+<br/><br/>
+
+<label for="doctor" class="col-sm-2 control-label">view the work shift:</label>
+<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a th:href="@{/schedule/list}" class="btn btn-info">view</a>
+    </div>
+</div>
+<br/><br/>
+
+
+<label for="doctor" class="col-sm-2 control-label">message to manager:</label>
+<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a th:href="@{/message/doctorsIn(doctorName=${currentDoctor})}" class="btn btn-info">contact</a>
+    </div>
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+</body>
+</html>

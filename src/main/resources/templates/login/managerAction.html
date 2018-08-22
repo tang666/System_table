@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>userList</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+    
+    <style>
+        .translatecenter{width: 80%; height: 60%; position: absolute; left:75%; top:50%; transform:translate(-50%,-50%);}
+    </style>
+    
+</head>
+<body class="container">
+<br/>
+
+<div class="translatecenter">
+
+<h1>Manager action Page</h1>
+<br/><br/>
+
+<label for="manager" class="col-sm-2 control-label">Doctors' information:</label>
+<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a th:href="@{/doctor/list(managerName=${currentManager})}" class="btn btn-info">update</a>
+    </div>
+</div>
+<br/><br/>
+
+<label for="manager" class="col-sm-2 control-label">Holiday application:</label>
+<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a th:href="@{/application/list(managerName=${currentManager})}" class="btn btn-info">check</a>
+    </div>
+</div>
+<br/><br/>
+
+<label for="manager" class="col-sm-2 control-label">Doctors' Limit:</label>
+<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a th:href="@{/doctorLimit/list(managerName=${currentManager})}" class="btn btn-info">doctorLimits</a>
+    </div>
+</div>
+<br/><br/>
+
+<label for="manager" class="col-sm-2 control-label">Work shift:</label>
+<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a th:href="@{/schedule/init}" class="btn btn-info">schedule</a>
+    </div>
+    <div class="col-sm-2 control-label">
+        <a th:href="@{/schedule/toEdit}" class="btn btn-info">edit</a>
+    </div>
+</div>
+<br/><br/>
+<label for="manager" class="col-sm-2 control-label">Messages:</label>
+<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a th:href="@{/message/managersIn(managerName=${currentManager})}" class="btn btn-info">contact</a>
+    </div>
+</div>
+
+
+
+
+</div>
+
+
+</body>
+</html>
