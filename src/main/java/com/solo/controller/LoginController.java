@@ -78,7 +78,14 @@ public class LoginController {
 	}
 	
 	
-	
+	@RequestMapping("/table")
+	public String edittable(){
+		
+		
+		
+		
+		return "login/table";
+	}
 	
 	
 	

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>userList</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+    <link rel="stylesheet" th:href="@{/css/jquery-ui-1.10.4.custom.css}" >
+    <link rel="stylesheet" th:href="@{/css/bootstrap-table.css}"></link>
+    <script th:src="@{/js/jquery-1.10.2.js}"></script>
+	<script th:src="@{/js/jquery-ui-1.10.4.custom.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/bootstrap-table.js}"></script>
+</head>
+<body class="container">
+
+    <div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title text-center">Bootstrap-table</h3>
+		</div>
+		<div class="panel-body">
+ 
+		<ol class="breadcrumb" id="testNav">
+            
+        </ol>	
+        
+		
+		<div>
+		    <button id="btn_select" type="button" class="btn btn-default"></button>
+		</div>
+		
+	</div>
+	
+	
+	
+	
+   </div>     
+
+
+
+
+</body>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	
+	
+	
+	$.ajax({
+		url : "getTestList",
+		type : 'post',
+		dataType : 'json',
+		success : function(data){
+			var resList = "";
+			$.each(data,function(index,item){
+				resList += "<li><a th:href='@{/test/returnRes?id="+index+"}'>"+item+"</li>"
+			});
+			$("#testNav").html(resList);	
+		},
+		error : function(obj){
+			alert("return error:"+obj);
+		},
+	});
+	
+	
+});
+
+
+
+/*
+$("#table").bootstrapTable(
+		{
+			url : "list",    //数据请求路径
+			clickToSelect : true,  //点击表格项即可选择
+			dataType : "json",   //后端数据传递类型
+			pageSize : 5,
+			pageList : [ 5, 10, 20 ],
+		//	contentType : "application/x-www-form-urlencoded",
+			method : 'get',      //请求类型
+			dataField : "data",  //很重要，这是后端返回的实体数据！					
+			//是否显示详细视图和列表视图的切换按钮
+			queryParams : function(params) {//自定义参数，这里的参数是传给后台的，我这是是分页用的  
+				return {//这里的params是table提供的  
+					offset : params.offset,//从数据库第几条记录开始  
+					limit : params.limit
+				//找多少条  
+				};
+			},
+			responseHandler : function(res) {
+				//在ajax获取到数据，渲染表格之前，修改数据源
+				return res;
+			},
+			columns : [
+					{
+						field : 'state',
+					},
+					{
+						field : 'id',
+						title : 'ID',
+						align : 'center'
+					},
+					{
+						field : 'day',
+						title : 'Day',
+						align : 'center'
+					},
+					{
+						field : 'time',
+						title : 'Time',
+						align : 'center'
+					},
+					{
+						field : 'doctorName',
+						title : 'DoctorName',
+						align : 'center'
+					},
+					{
+						title : 'Action',
+						field : 'id',
+						align : 'center',
+						formatter : function(value, row, index) {
+							var e = '<a href="#" mce_href="#" onclick="edit(\''
+									+ row.id + '\')">Edit</a> ';
+							var d = '<a href="#" mce_href="#" onclick="del(\''
+									+ row.id + '\')">Delete</a> ';
+							return e + d;
+						}
+
+					} ]
+		});
+*/
+
+
+
+</script>
+</html>
